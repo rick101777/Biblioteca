@@ -2,9 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.twu.biblioteca.Book;
-
 import static org.junit.Assert.*;
 
 
