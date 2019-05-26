@@ -36,10 +36,9 @@ public class Book {
     public boolean Checkout(){
         if (!this.isCheckedOut){
             this.isCheckedOut = true;
-            System.out.println("Thank you! Enjoy the book.");
+
             return true;
         }
-        System.out.println("Sorry, that book is not available.");
         return false;
     }
 
@@ -47,10 +46,8 @@ public class Book {
     public boolean Return(){
         if (this.isCheckedOut){
             this.isCheckedOut = false;
-            System.out.println("Thank you for returning a book.");
             return true;
         }
-        System.out.println("That is not a valid book to return.");
         return false;
     }
 
