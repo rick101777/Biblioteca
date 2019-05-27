@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -10,7 +11,12 @@ public class BibliotecaApp {
         do {
             System.out.println("Main Menu:\n\t 1. List of books \n\t 2. Exit Application");
             System.out.println("Enter your choice: ");
-            choice = scan.nextInt();
+            try {
+                choice = scan.nextInt();
+            }catch (InputMismatchException ime){
+                System.out.println("Entry must be an integer!");
+                System.exit(-1);
+            }
             if (choice <= 0 || choice >= 3) { System.out.println("That is an invalid option. Try Again...");}
         }while (choice <= 0 || choice >= 3);
 
@@ -23,15 +29,21 @@ public class BibliotecaApp {
         do {
             System.out.println("Book Action Menu:\n\t 1. Checkout a book \n\t 2. Return a Book \n\t 3. Return to Main Menu \n\t 4. Exit Application");
             System.out.println("Enter your choice: ");
-            choice = scan.nextInt();
+            try {
+                choice = scan.nextInt();
+            }catch (InputMismatchException ime){
+                System.out.println("Entry must be an integer!");
+                System.exit(-1);
+            }
+            if (choice <= 0 || choice >= 5) {System.out.println("That is an invalid option. Try Again...");}
         }while(choice <= 0 || choice >= 5);
         return choice;
     }
 
     public static String getTitle(Scanner scan){
         String title = "";
+        System.out.println("Enter the title of the Book: ");
         do {
-            System.out.println("Enter the title of the Book: ");
             title = scan.nextLine();
         }while (title.equals(""));
 
