@@ -43,6 +43,38 @@ public class LibraryTest {
     }
 
     @Test
+    public void CheckoutTestSuccess(){
+        library.Checkout("Le Petit Prince");
+        assertTrue(!library.toString().contains("Le Petit Prince"));
+    }
+
+    @Test
+    public void CheckoutTestSuccess1(){
+        library.Checkout("Harry Potter and the Philosopher's Stone");
+        assertTrue(!library.toString().contains("Harry Potter and the Philosopher's Stone"));
+    }
+
+    @Test
+    public void CheckoutTestSuccess2(){
+        library.Checkout("The Hobbit");
+        assertTrue(!library.toString().contains("The Hobbit"));
+    }
+
+    @Test
+    public void CheckoutTestSuccess3(){
+        library.Checkout("The Lion, the Witch and the Wardrobe");
+        assertTrue(!library.toString().contains("The Lion, the Witch and the Wardrobe"));
+    }
+
+    @Test
+    public void ReturnTestSuccess1(){
+        library.Checkout("Le Petit Prince");
+        library.Return("Le Petit Prince");
+        assertTrue(library.toString().contains("Le Petit Prince"));
+    }
+
+
+    @Test
     public void BookSearchTestFailure(){
         Book book = library.BookSearch("Le Peee");
         assertNull(book);

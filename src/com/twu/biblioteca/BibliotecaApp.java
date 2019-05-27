@@ -31,8 +31,9 @@ public class BibliotecaApp {
     public static String getTitle(Scanner scan){
         String title = "";
         do {
-
-        }while (title != "");
+            System.out.println("Enter the title of the Book: ");
+            title = scan.nextLine();
+        }while (title.equals(""));
 
         return title;
     }
@@ -59,13 +60,19 @@ public class BibliotecaApp {
                         int BookActionChoice = bookMenuOption(scan);
                         switch (BookActionChoice){
                             case 1:
-
+                                String checkoutTitle = getTitle(scan);
+                                library.Checkout(checkoutTitle);
                                 break;
                             case 2:
+                                String returnTitle = getTitle(scan);
+                                library.Return(returnTitle);
                                 break;
                             case 3:
+                                BookActions = false;
                                 break;
                             case 4:
+                                BookActions = false;
+                                shouldRun = false;
                                 break;
                             default:
                                 break;

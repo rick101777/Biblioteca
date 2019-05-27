@@ -17,21 +17,24 @@ public class Library {
     public void Checkout(String title){
         Book book = BookSearch(title);
         if (book != null) {
-            book.isCheckedOut();
+            book.Checkout();
             System.out.println("Thank you! Enjoy the book");
         }else{
             System.out.println("Sorry, that book is not available");
         }
     }
 
-    public void Return(String title){
-        for(Book book : this.library){
-            if (book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())){
+    public void Return(String title) {
+        boolean notFound = true;
+        for (Book book : this.library) {
+            if (book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())) {
                 book.Return();
+                notFound = false;
                 System.out.println("Thank you for returning the book");
-            }else{
-                System.out.println("That is not a valid book to return");
             }
+        }
+        if (notFound) {
+            System.out.println("That is not a valid book to return");
         }
     }
 
