@@ -14,28 +14,36 @@ public class Library {
         this.library.add(book);
     }
 
-    public void Checkout(String title){
+    public boolean Checkout(String title){
         Book book = BookSearch(title);
+        boolean status = false;
         if (book != null) {
             book.Checkout();
             System.out.println("Thank you! Enjoy the book");
+            status = true;
         }else{
             System.out.println("Sorry, that book is not available");
+            status = false;
         }
+        return status;
     }
 
-    public void Return(String title) {
+    public boolean Return(String title) {
         boolean notFound = true;
+        boolean status = false;
         for (Book book : this.library) {
             if (book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())) {
                 book.Return();
                 notFound = false;
                 System.out.println("Thank you for returning the book");
+                status = true;
             }
         }
         if (notFound) {
             System.out.println("That is not a valid book to return");
+            status = false;
         }
+        return status;
     }
 
     public Book BookSearch(String title){
