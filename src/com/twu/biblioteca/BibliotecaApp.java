@@ -54,10 +54,6 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Library library = new Library();
-        library.add(new Book("Le Petit Prince", "Antoine de Saint-Exupery", 1943));
-        library.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
-        library.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
-        library.add(new Book("The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950));
 
         System.out.println("Welcome to Biblioteca. Your one stop-shop for great book titles in Bangalore!");
 

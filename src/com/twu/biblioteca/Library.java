@@ -1,18 +1,24 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Library {
 
-    private ArrayList<Book> library;
+    private ArrayList<Book> books;
+    private ArrayList<Movie> movies;
+    private HashMap<String, String> LibraryCredentials; // Unique library number | Unique Password
 
     public Library(){
-        this.library = new ArrayList<>();
+        this.books = new ArrayList<>();
+        this.movies = new ArrayList<>();
+
+        books.add(new Book("Le Petit Prince", "Antoine de Saint-Exupery", 1943));
+        books.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
+        books.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
+        books.add(new Book("The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950));
     }
 
-    public void add(Book book){
-        this.library.add(book);
-    }
 
     public boolean Checkout(String title){
         Book book = BookSearch(title);
@@ -31,7 +37,7 @@ public class Library {
     public boolean Return(String title) {
         boolean notFound = true;
         boolean status = false;
-        for (Book book : this.library) {
+        for (Book book : this.books) {
             if (book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())) {
                 book.Return();
                 notFound = false;
@@ -47,7 +53,7 @@ public class Library {
     }
 
     public Book BookSearch(String title){
-        for (Book book : this.library){
+        for (Book book : this.books){
             if (!book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())){
                 return book;
             }
@@ -55,11 +61,21 @@ public class Library {
         return null;
     }
 
+
+
+
+    public boolean verifyPassword(){
+
+        return false;
+    }
+
+
+
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Title\t\tAuthor\t\tPublished Year\n");
-        for (Book book : this.library){
+        for (Book book : this.books){
             if (!book.isCheckedOut()){
                 sb.append(book.toString());
                 sb.append("\n");
