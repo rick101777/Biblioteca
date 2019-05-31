@@ -37,28 +37,27 @@ public class Library {
         return book;
     }
 
-    public boolean BookReturn(String title) {
-        boolean notFound = true;
+    public boolean BookReturn(Book book) {
         boolean status = false;
-        for (Book book : this.books) {
-            if (book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())) {
-                book.Return();
-                notFound = false;
-                System.out.println("Thank you for returning the book");
-                status = true;
+        if (book != null) {
+            for (Book b : this.books) {
+                if (book.isCheckedOut() && b.equals(book)) {
+                    book.Return();
+                    System.out.println("Thank you for returning the book");
+                    status = true;
+                }
             }
         }
-        if (notFound) {
-            System.out.println("That is not a valid book to return");
-            status = false;
-        }
+        System.out.println("That is not a valid book to return");
         return status;
     }
 
     public Book BookSearch(String title){
-        for (Book book : this.books){
-            if (!book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())){
-                return book;
+        if (title.length() > 0) {
+            for (Book book : this.books) {
+                if (!book.isCheckedOut() && book.getTitle().toLowerCase().equals(title.toLowerCase())) {
+                    return book;
+                }
             }
         }
         return null;
@@ -93,27 +92,26 @@ public class Library {
     }
 
     public boolean MovieReturn(Movie movie){
-        boolean notFound = true;
         boolean status = false;
-        for (Book book : this.books) {
-            if (book.isCheckedOut() && movie.getName().toLowerCase().equals(movie.getName().toLowerCase())) {
-                book.Return();
-                notFound = false;
-                System.out.println("Thank you for returning the movie");
-                status = true;
+        if (movie != null) {
+            for (Movie mov : this.movies) {
+                if (mov.isCheckedout() && mov.equals(movie)) {
+                    movie.Return();
+                    System.out.println("Thank you for returning the movie");
+                    status = true;
+                }
             }
         }
-        if (notFound) {
-            System.out.println("That is not a valid movie to return");
-            status = false;
-        }
+        System.out.println("That is not a valid movie to return");
         return status;
     }
 
     public Movie MovieSearch(String title){
-        for (Movie movie : this.movies){
-            if (!movie.isCheckedout() && movie.getName().toLowerCase().equals(title.toLowerCase())){
-                return movie;
+        if (title.length() > 0) {
+            for (Movie movie : this.movies) {
+                if (!movie.isCheckedout() && movie.getName().toLowerCase().equals(title.toLowerCase())) {
+                    return movie;
+                }
             }
         }
         return null;
@@ -122,7 +120,7 @@ public class Library {
 
     public String ListMovies(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Name\t\tYear\t\tDirector\t\tRating");
+        sb.append("Name\t\tYear\t\tDirector\t\tRating\n");
         for (Movie movie : this.movies){
             if (!movie.isCheckedout()){
                 sb.append(movie.toString());

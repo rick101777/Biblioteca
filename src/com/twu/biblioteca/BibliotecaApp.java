@@ -52,8 +52,8 @@ public class BibliotecaApp {
     public static int movieMenuOption(Scanner scan){
         int choice = -1;
         do{
-            System.out.println("Movie Action Menu:\n\t" +
-                    "1.Checkout a Movie \n\t " +
+            System.out.println("Movie Action Menu:\n\t " +
+                    "1. Checkout a Movie \n\t " +
                     "2. Return a Movie \n\t " +
                     "3. Return to Main Menu \n\t " +
                     "4. Exit Application");
@@ -71,7 +71,7 @@ public class BibliotecaApp {
 
     public static String getTitle(Scanner scan){
         String title = "";
-        System.out.println("Enter the title of the Book: ");
+        System.out.println("Enter the title: ");
         do {
             title = scan.nextLine();
         }while (title.equals(""));
@@ -79,10 +79,16 @@ public class BibliotecaApp {
         return title;
     }
 
+    public static User Login(){
+
+        return null;
+    }
+
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Library library = new Library();
+        User user = null;
 
         System.out.println("Welcome to Biblioteca. Your one stop-shop for great book titles in Bangalore!");
 
@@ -97,12 +103,24 @@ public class BibliotecaApp {
                         int BookActionChoice = bookMenuOption(scan);
                         switch (BookActionChoice){
                             case 1:
-                                String checkoutTitle = getTitle(scan);
-                                library.BookCheckout(checkoutTitle);
+                                if (user != null) {
+                                    String checkoutTitle = getTitle(scan);
+                                    library.BookCheckout(checkoutTitle);
+                                    // TODO
+                                    // Give book to User
+                                }else{
+                                    // Prompt user to login
+                                }
+
                                 break;
                             case 2:
-                                String returnTitle = getTitle(scan);
-                                library.BookReturn(returnTitle);
+                                if (user != null) {
+                                    //String returnTitle = getTitle(scan);
+                                    //library.BookReturn(returnTitle);
+                                    // TODO
+                                }else{
+                                    // Prompt user to login
+                                }
                                 break;
                             case 3:
                                 BookActions = false;
@@ -123,12 +141,30 @@ public class BibliotecaApp {
                         int MovieActionChoice = movieMenuOption(scan);
                         switch(MovieActionChoice){
                             case 1:
+                                if (user != null){
+                                    // TODO
+                                    String movieName = getTitle(scan);
+                                    Movie movie = library.MovieCheckout(movieName);
+                                    // give book to user
+                                }else {
+                                    // prompt user to login
+                                }
                                 break;
                             case 2:
+                                if (user != null){
+                                    // Select a Movie to Return
+                                    // TODO
+                                    library.MovieReturn(null);
+                                }else{
+                                    // Prompt user to login
+                                }
                                 break;
                             case 3:
+                                MovieActions = false;
                                 break;
                             case 4:
+                                MovieActions = false;
+                                shouldRun = false;
                                 break;
                             default:
                                 break;
