@@ -5,11 +5,11 @@ public class Movie {
     private String name;
     private int year;
     private String director;
-    private int movieRating;
+    private double movieRating;
     private boolean isCheckedout;
 
 
-    public Movie(String name, int year, String director, int movieRating){
+    public Movie(String name, int year, String director, double movieRating){
         this.name = name;
         this.year = year;
         this.director = director;
@@ -30,17 +30,27 @@ public class Movie {
         return this.director;
     }
 
-    public int getMovieRating(){
+    public double getMovieRating(){
         return this.movieRating;
     }
 
+    public boolean isCheckedout(){
+        return this.isCheckedout;
+    }
+
     public boolean Checkout(){
-        //TODO
+        if (!this.isCheckedout){
+            this.isCheckedout = true;
+            return true;
+        }
         return false;
     }
 
     public boolean Return(){
-        //TODO
+        if (this.isCheckedout){
+            this.isCheckedout = false;
+            return true;
+        }
         return false;
     }
 

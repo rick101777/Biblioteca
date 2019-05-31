@@ -42,113 +42,113 @@ public class LibraryTest {
 
     @Test
     public void CheckoutTestSuccess(){
-        library.Checkout("Le Petit Prince");
-        assertTrue(!library.toString().contains("Le Petit Prince"));
+        library.BookCheckout("Le Petit Prince");
+        assertTrue(!library.ListBooks().contains("Le Petit Prince"));
     }
 
     @Test
     public void CheckoutTestSuccess1(){
-        library.Checkout("Harry Potter and the Philosopher's Stone");
-        assertTrue(!library.toString().contains("Harry Potter and the Philosopher's Stone"));
+        library.BookCheckout("Harry Potter and the Philosopher's Stone");
+        assertTrue(!library.ListBooks().contains("Harry Potter and the Philosopher's Stone"));
     }
 
     @Test
     public void CheckoutTestSuccess2(){
-        library.Checkout("The Hobbit");
-        assertTrue(!library.toString().contains("The Hobbit"));
+        library.BookCheckout("The Hobbit");
+        assertTrue(!library.ListBooks().contains("The Hobbit"));
     }
 
     @Test
     public void CheckoutTestSuccess3(){
-        library.Checkout("The Lion, the Witch and the Wardrobe");
-        assertTrue(!library.toString().contains("The Lion, the Witch and the Wardrobe"));
+        library.BookCheckout("The Lion, the Witch and the Wardrobe");
+        assertTrue(!library.ListBooks().contains("The Lion, the Witch and the Wardrobe"));
     }
 
     @Test
     public void ReturnTestSuccess(){
-        library.Checkout("Le Petit Prince");
-        library.Return("Le Petit Prince");
-        assertTrue(library.toString().contains("Le Petit Prince"));
+        library.BookCheckout("Le Petit Prince");
+        library.BookReturn("Le Petit Prince");
+        assertTrue(library.ListBooks().contains("Le Petit Prince"));
     }
 
     @Test
     public void ReturnTestSuccess1(){
-        library.Checkout("Harry Potter and the Philosopher's Stone");
-        library.Return("Harry Potter and the Philosopher's Stone");
-        assertTrue(library.toString().contains("Harry Potter and the Philosopher's Stone"));
+        library.BookCheckout("Harry Potter and the Philosopher's Stone");
+        library.BookReturn("Harry Potter and the Philosopher's Stone");
+        assertTrue(library.ListBooks().contains("Harry Potter and the Philosopher's Stone"));
     }
 
     @Test
     public void ReturnTestSuccess2(){
-        library.Checkout("The Hobbit");
-        library.Return("The Hobbit");
-        assertTrue(library.toString().contains("The Hobbit"));
+        library.BookCheckout("The Hobbit");
+        library.BookReturn("The Hobbit");
+        assertTrue(library.ListBooks().contains("The Hobbit"));
     }
 
     @Test
     public void ReturnTestSuccess3(){
-        library.Checkout("The Lion, the Witch and the Wardrobe");
-        library.Return("The Lion, the Witch and the Wardrobe");
-        assertTrue(library.toString().contains("The Lion, the Witch and the Wardrobe"));
+        library.BookCheckout("The Lion, the Witch and the Wardrobe");
+        library.BookReturn("The Lion, the Witch and the Wardrobe");
+        assertTrue(library.ListBooks().contains("The Lion, the Witch and the Wardrobe"));
     }
 
     @Test
     public void CheckingOutCheckedOutBook(){
         String title = "Le Petit Prince";
-        library.Checkout(title);
-        boolean status = library.Checkout(title);
-        assertFalse(status);
+        library.BookCheckout(title);
+        Book status = library.BookCheckout(title);
+        assertNull(status);
     }
 
     @Test
     public void CheckingOutCheckedOutBook1(){
         String title = "Harry Potter and the Philosopher's Stone";
-        library.Checkout(title);
-        boolean status = library.Checkout(title);
-        assertFalse(status);
+        library.BookCheckout(title);
+        Book status = library.BookCheckout(title);
+        assertNull(status);
     }
 
     @Test
     public void CheckingOutCheckedOutBook2(){
         String title = "The Hobbit";
-        library.Checkout(title);
-        boolean status = library.Checkout(title);
-        assertFalse(status);
+        library.BookCheckout(title);
+        Book status = library.BookCheckout(title);
+        assertNull(status);
     }
 
     @Test
     public void CheckingOutCheckedOutBook3(){
         String title = "The Lion, the Witch and the Wardrobe";
-        library.Checkout(title);
-        boolean status = library.Checkout(title);
-        assertFalse(status);
+        library.BookCheckout(title);
+        Book status = library.BookCheckout(title);
+        assertNull(status);
     }
 
     @Test
     public void ReturningUncheckedOutBook(){
         String title = "Le Petit Prince";
-        boolean status = library.Return(title);
+        boolean status = library.BookReturn(title);
         assertFalse(status);
     }
 
     @Test
     public void ReturningUncheckedOutBook1(){
         String title = "Harry Potter and the Philosopher's Stone";
-        boolean status = library.Return(title);
+        boolean status = library.BookReturn(title);
         assertFalse(status);
     }
 
     @Test
     public void ReturningUncheckedOutBook2(){
         String title = "The Hobbit";
-        boolean status = library.Return(title);
+        boolean status = library.BookReturn(title);
         assertFalse(status);
     }
 
     @Test
     public void ReturningUncheckedOutBook3(){
         String title = "The Lion, the Witch and the Wardrobe";
-        boolean status = library.Return(title);
+        boolean status = library.BookReturn(title);
         assertFalse(status);
     }
 
@@ -160,4 +160,70 @@ public class LibraryTest {
     }
 
 /*---------------------------------Movie Tests------------------------------------------------*/
+
+    @Test
+    public void MovieSearchIncorrectTitle(){
+
+    }
+
+    @Test
+    public void MovieSearchCorrectTitle(){
+
+    }
+
+    @Test
+    public void MovieReturnNotInLibraryDirectory(){
+
+    }
+
+    @Test
+    public void MovieReturnIsNotCheckedout(){
+
+    }
+
+    @Test
+    public void MovieReturnIsCheckout(){
+
+    }
+
+    @Test
+    public void MovieCheckoutIncorrectTitle(){
+
+    }
+
+    @Test
+    public void MovieCheckoutCorrectTitle(){
+
+    }
+
+    @Test
+    public void MovieCheckoutResultIsNul(){
+
+    }
+
+    @Test
+    public void MovieCheckoutResultIsNotNull(){
+
+    }
+
+    @Test
+    public void ListMoviesCheckedoutMovieDisappears(){
+
+    }
+
+    @Test
+    public void ListMoviesCheckedoutMovieDoesNotDisappear(){
+
+    }
+
+    @Test
+    public void ListMoviesReturnedMovieReappears(){
+
+    }
+
+    @Test
+    public void ListMovieReturnedMovieDoesNotReappear(){
+
+    }
+
 }

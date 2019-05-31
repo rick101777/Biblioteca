@@ -1,13 +1,12 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class Library {
 
     private ArrayList<Book> books;
     private ArrayList<Movie> movies;
-    private HashMap<String, String> LibraryCredentials; // Unique library number | Unique Password
 
     public Library(){
         this.books = new ArrayList<>();
@@ -17,24 +16,28 @@ public class Library {
         books.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
         books.add(new Book("The Hobbit", "J.R.R. Tolkien", 1937));
         books.add(new Book("The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950));
+
+
+        movies.add(new Movie("The Godfather", 1972, "Francis Ford Coppola", 9.2));
+        movies.add(new Movie("The Shawshank Redemption", 1994, "Frank Darabont", 9.3));
+        movies.add(new Movie("Shazam", 2019, "David Sandberg", 7.4));
+        movies.add(new Movie("Avengers Endgame", 2019, "Anthony Russo", 8.8));
     }
 
+/*----------------------------------------Book Methods-------------------------------------*/
 
-    public boolean Checkout(String title){
+    public Book BookCheckout(String title){
         Book book = BookSearch(title);
-        boolean status = false;
         if (book != null) {
             book.Checkout();
             System.out.println("Thank you! Enjoy the book");
-            status = true;
         }else{
             System.out.println("Sorry, that book is not available");
-            status = false;
         }
-        return status;
+        return book;
     }
 
-    public boolean Return(String title) {
+    public boolean BookReturn(String title) {
         boolean notFound = true;
         boolean status = false;
         for (Book book : this.books) {
@@ -63,16 +66,7 @@ public class Library {
 
 
 
-
-    public boolean verifyPassword(){
-
-        return false;
-    }
-
-
-
-    @Override
-    public String toString(){
+    public String ListBooks(){
         StringBuilder sb = new StringBuilder();
         sb.append("Title\t\tAuthor\t\tPublished Year\n");
         for (Book book : this.books){
@@ -84,5 +78,58 @@ public class Library {
         return sb.toString();
     }
 
+/*---------------------------------------Movie Methods--------------------------------------------------*/
+
+    public Movie MovieCheckout(String title){
+        Movie movie = MovieSearch(title);
+        if (movie != null){
+            movie.Checkout();
+            System.out.println("Thank you! Enjoy the movie.");
+            return movie;
+        }else {
+            System.out.println("Sorry, that movie is not available");
+        }
+        return null;
+    }
+
+    public boolean MovieReturn(Movie movie){
+        boolean notFound = true;
+        boolean status = false;
+        for (Book book : this.books) {
+            if (book.isCheckedOut() && movie.getName().toLowerCase().equals(movie.getName().toLowerCase())) {
+                book.Return();
+                notFound = false;
+                System.out.println("Thank you for returning the movie");
+                status = true;
+            }
+        }
+        if (notFound) {
+            System.out.println("That is not a valid movie to return");
+            status = false;
+        }
+        return status;
+    }
+
+    public Movie MovieSearch(String title){
+        for (Movie movie : this.movies){
+            if (!movie.isCheckedout() && movie.getName().toLowerCase().equals(title.toLowerCase())){
+                return movie;
+            }
+        }
+        return null;
+    }
+
+
+    public String ListMovies(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name\t\tYear\t\tDirector\t\tRating");
+        for (Movie movie : this.movies){
+            if (!movie.isCheckedout()){
+                sb.append(movie.toString());
+                sb.append("\n");
+            }
+        }
+        return sb.toString();
+    }
 
 }

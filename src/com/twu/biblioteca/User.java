@@ -1,17 +1,19 @@
 package com.twu.biblioteca;
 
-import jdk.jfr.Percentage;
+
 
 public class User {
 
     private String name;
     private String email;
     private int phoneNumber;
+    private boolean isLoggedIn;
 
     public User(String name, String email, int phoneNumber){
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.isLoggedIn = false;
     }
 
     public String getName(){
@@ -26,6 +28,9 @@ public class User {
         return this.phoneNumber;
     }
 
+    public boolean isLoggedIn(){
+        return this.isLoggedIn;
+    }
 
     @Override
     public String toString(){
