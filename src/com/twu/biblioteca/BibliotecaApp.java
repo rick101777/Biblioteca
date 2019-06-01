@@ -79,8 +79,39 @@ public class BibliotecaApp {
         return title;
     }
 
-    public static User Login(){
+    public static User Login(Scanner scan){
+        String credential = "";
+        do{
 
+        }while(credential == "");
+        return null;
+    }
+
+    public static Book returnBookOptions(Scanner scan, User user){
+        // TODO
+        // if user.books > 0 then
+        if (user.getBookSize() > 0){
+            user.ListBooks();
+
+        }
+        System.out.println("You currently do not have any books to return");
+
+            // ask the user to specify which book
+            // then retrieve it, remove it from user
+            // return it to the library
+        //else
+            // Print you do not have any books to return
+        return null;
+    }
+
+    public static Movie returnMovieOption(){
+        // TODO
+        // if user.books > 0 then
+            // ask the user to specify which book
+            // then retrieve it, remove it from user
+            // return it to the library
+        //else
+            // Print you do not have any books to return
         return null;
     }
 
@@ -105,11 +136,13 @@ public class BibliotecaApp {
                             case 1:
                                 if (user != null) {
                                     String checkoutTitle = getTitle(scan);
-                                    library.BookCheckout(checkoutTitle);
+                                    Book book = library.BookCheckout(checkoutTitle);
                                     // TODO
-                                    // Give book to User
+                                    if (book != null) {
+                                        // Give book to User
+                                    }
                                 }else{
-                                    // Prompt user to login
+                                    user = Login(scan);
                                 }
 
                                 break;
@@ -119,7 +152,7 @@ public class BibliotecaApp {
                                     //library.BookReturn(returnTitle);
                                     // TODO
                                 }else{
-                                    // Prompt user to login
+                                    user = Login(scan);
                                 }
                                 break;
                             case 3:
@@ -145,9 +178,11 @@ public class BibliotecaApp {
                                     // TODO
                                     String movieName = getTitle(scan);
                                     Movie movie = library.MovieCheckout(movieName);
-                                    // give book to user
+                                    if (movie != null) {
+                                        // give book to user
+                                    }
                                 }else {
-                                    // prompt user to login
+                                    user = Login(scan);
                                 }
                                 break;
                             case 2:
@@ -156,7 +191,7 @@ public class BibliotecaApp {
                                     // TODO
                                     library.MovieReturn(null);
                                 }else{
-                                    // Prompt user to login
+                                    user = Login(scan);
                                 }
                                 break;
                             case 3:
@@ -172,10 +207,12 @@ public class BibliotecaApp {
                     }
                     break;
                 case 3:
-                    //TODO
+                    if (user == null) {
+                        user = Login(scan);
+                    }
                     break;
                 case 4:
-                    //TODO
+                    System.out.println(user);
                     break;
                 case 5:
                     shouldRun = false;
@@ -184,15 +221,7 @@ public class BibliotecaApp {
                     break;
             }
         }
-
+        scan.close();
     }
-
-        // Display Options for user:
-            // List Books
-                // Options:
-                    // Checkout book
-                    // Return book
-                    // Exit
-            // Exit
 }
 
