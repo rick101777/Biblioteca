@@ -31,7 +31,9 @@ public class Verification {
 
     public User Login(String libraryNumber, String password){
         if (Verify(libraryNumber, password)){
-            return users.get(libraryNumber);
+            User user = users.get(libraryNumber);
+            System.out.println("Welcome to Biblioteca, " + user.getName());
+            return user;
         }
         System.out.println("Incorrect library number, or password");
         return null;

@@ -54,6 +54,7 @@ public class User {
     public Book getBook(int index) {
         if (this.books.size() > 0) {
             Book book = this.books.remove(index);
+            this.booksSize -= 1;
             return book;
         }
         return null;
@@ -61,6 +62,7 @@ public class User {
     public Movie getMovie(int index){
         if (this.movies.size() > 0) {
             Movie movie = this.movies.remove(index);
+            this.moviesSize -= 1;
             return movie;
         }
         return null;
@@ -80,7 +82,7 @@ public class User {
 
         for (int i = 0; i < this.booksSize; i++){
             Book book = this.books.get(i);
-            if (!book.isCheckedOut()){
+            if (book.isCheckedOut()){
                 sb.append("\t");
                 sb.append(i);
                 sb.append(".\t");
@@ -96,7 +98,7 @@ public class User {
         sb.append("Name\t\tYear\t\tDirector\t\tRating\n");
         for (int i = 0; i < this.moviesSize; i++){
             Movie movie = this.movies.get(i);
-            if (!movie.isCheckedout()){
+            if (movie.isCheckedout()){
                 sb.append("\t");
                 sb.append(i);
                 sb.append(".\t");
@@ -110,13 +112,19 @@ public class User {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("\t\tAccount Information\n");
+        sb.append("\tAccount Information\n");
+        sb.append("\t");
+        sb.append("Name: ");
         sb.append("\t");
         sb.append(this.name);
         sb.append("\n");
         sb.append("\t");
+        sb.append("Email: ");
+        sb.append("\t");
         sb.append(this.email);
         sb.append("\n");
+        sb.append("\t");
+        sb.append("Phone Number: ");
         sb.append("\t");
         sb.append(this.phoneNumber);
 

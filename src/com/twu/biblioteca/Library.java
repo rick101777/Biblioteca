@@ -47,8 +47,9 @@ public class Library {
                     status = true;
                 }
             }
+        }else {
+            System.out.println("That is not a valid book to return");
         }
-        System.out.println("That is not a valid book to return");
         return status;
     }
 
@@ -101,8 +102,9 @@ public class Library {
                     status = true;
                 }
             }
+        }else {
+            System.out.println("That is not a valid movie to return");
         }
-        System.out.println("That is not a valid movie to return");
         return status;
     }
 
